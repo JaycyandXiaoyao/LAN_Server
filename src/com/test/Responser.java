@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Inet4Address;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -22,7 +19,6 @@ public class Responser extends Thread {
 	private DatagramSocket socket;
 	private DatagramPacket packet;
 
-	private List<User> userList;
 
 	/**
 	 * 
@@ -35,7 +31,6 @@ public class Responser extends Thread {
 
 		this.srcPort = srcPort;
 		this.dstPort = dstPort;
-		userList = new ArrayList<User>();
 		start();
 	}
 
@@ -58,7 +53,6 @@ public class Responser extends Thread {
 				
 				replytoClient((Inet4Address) packet.getAddress());
 				
-				recordUser(massage.substring(3, massage.length()), packet.getAddress().getHostAddress());
 				
 
 			} catch (IOException e) {
@@ -88,15 +82,6 @@ public class Responser extends Thread {
 
 	}
 	
-	private void recordUser(String username, String userIP) {
-		for (User user : userList) {
-			if (user.getUsername().equals(username)) {
-				return;
-			}
-		}
-		userList.add(new User(username, userIP, new Date()));
-
-	}
 
 	public static String byteToString(byte[] bs) {
 		String result = new String(bs);
@@ -107,11 +92,4 @@ public class Responser extends Thread {
 		return s.equals("001");
 	}
 
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
 }
