@@ -42,7 +42,7 @@ public class Responser extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("running");
+			new MyOut().println("running");
 
 			try {
 				packet = new DatagramPacket(new byte[1024], 1024, null, srcPort);
@@ -61,14 +61,14 @@ public class Responser extends Thread {
 				
 
 			} catch (IOException e) {
-				e.printStackTrace();
+				new MyOut().println(e.toString());
 			}
 		}
 	}
 
 	public void replytoClient(Inet4Address clientAddress) {
 
-		System.out.println("客户端ip:" + clientAddress.getHostAddress());
+		new MyOut().println("客户端ip:" + clientAddress.getHostAddress());
 
 		String reply = "002";
 		packet = new DatagramPacket(reply.getBytes(), reply.length(),
@@ -79,12 +79,17 @@ public class Responser extends Thread {
 			socket.send(packet);
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			new MyOut().println(e.toString());
 		}
 
 	}
 	
 	private void recordUser(String username, String userIP) {
+		for (User user : userList) {
+			if (user.getUsername().equals(username)) {
+				return;
+			}
+		}
 		userList.add(new User(username, userIP, new Date()));
 
 	}

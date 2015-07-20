@@ -13,7 +13,7 @@ public class MsgReceiver{
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			e.printStackTrace();
+			new MyOut().println(e.toString());
 		}
 	}
 	
@@ -26,7 +26,7 @@ public class MsgReceiver{
 			msg = inputStream.readUTF();
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			new MyOut().println(e.toString());
 		}
 		return msg;
 	}
