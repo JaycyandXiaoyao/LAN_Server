@@ -10,8 +10,8 @@ public class TestCase {
 		
 		while(true)
 		{
-			new MyOut().println(receiver.receive());
-			new MyOut().println(responser.getUserList().get(0));
+			MyOut.println(receiver.receive());
+			MyOut.println(responser.getUserList().get(0));
 		}
 	}
 }

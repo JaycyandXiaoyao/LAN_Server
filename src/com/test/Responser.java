@@ -42,7 +42,8 @@ public class Responser extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			new MyOut().println("running");
+			new MyOut();
+			MyOut.println("running");
 
 			try {
 				packet = new DatagramPacket(new byte[1024], 1024, null, srcPort);
@@ -61,14 +62,16 @@ public class Responser extends Thread {
 				
 
 			} catch (IOException e) {
-				new MyOut().println(e.toString());
+				new MyOut();
+				MyOut.println(e.toString());
 			}
 		}
 	}
 
 	public void replytoClient(Inet4Address clientAddress) {
 
-		new MyOut().println("客户端ip:" + clientAddress.getHostAddress());
+		new MyOut();
+		MyOut.println("客户端ip:" + clientAddress.getHostAddress());
 
 		String reply = "002";
 		packet = new DatagramPacket(reply.getBytes(), reply.length(),
@@ -79,7 +82,8 @@ public class Responser extends Thread {
 			socket.send(packet);
 			socket.close();
 		} catch (IOException e) {
-			new MyOut().println(e.toString());
+			new MyOut();
+			MyOut.println(e.toString());
 		}
 
 	}

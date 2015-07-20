@@ -13,7 +13,8 @@ public class MsgReceiver{
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			new MyOut().println(e.toString());
+			new MyOut();
+			MyOut.println(e.toString());
 		}
 	}
 	
@@ -26,7 +27,8 @@ public class MsgReceiver{
 			msg = inputStream.readUTF();
 			socket.close();
 		} catch (IOException e) {
-			new MyOut().println(e.toString());
+			new MyOut();
+			MyOut.println(e.toString());
 		}
 		return msg;
 	}
