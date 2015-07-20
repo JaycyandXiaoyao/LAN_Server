@@ -42,7 +42,7 @@ public class Responser extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			new MyOut();
+			
 			MyOut.println("running");
 
 			try {
@@ -62,7 +62,7 @@ public class Responser extends Thread {
 				
 
 			} catch (IOException e) {
-				new MyOut();
+				
 				MyOut.println(e.toString());
 			}
 		}
@@ -70,7 +70,7 @@ public class Responser extends Thread {
 
 	public void replytoClient(Inet4Address clientAddress) {
 
-		new MyOut();
+		
 		MyOut.println("¿Í»§¶Ëip:" + clientAddress.getHostAddress());
 
 		String reply = "002";
@@ -82,7 +82,7 @@ public class Responser extends Thread {
 			socket.send(packet);
 			socket.close();
 		} catch (IOException e) {
-			new MyOut();
+			
 			MyOut.println(e.toString());
 		}
 
