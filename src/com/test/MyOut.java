@@ -1,5 +1,11 @@
 package com.test;
 
+/**
+ * 
+ * @author congxiaoyao
+ *
+ */
+
 public class MyOut {
 
 	public static void println(String msg) {
