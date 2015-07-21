@@ -5,11 +5,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Inet4Address;
 
-
 /**
- * 
  * @author congxiaoyao
- * @version 0.0.2
+ * @version 0.0.6
  */
 public class Responser extends Thread {
 
@@ -18,14 +16,10 @@ public class Responser extends Thread {
 
 	private DatagramSocket socket;
 	private DatagramPacket packet;
-
-
+	
 	/**
-	 * 
-	 * @param srcPort
-	 *            接受全网广播使用的端口号
-	 * @param dstPort
-	 *            回应服务器ip使用的端口号
+	 * @param srcPort 接受全网广播使用的端口号
+	 * @param dstPort 回应服务器ip使用的端口号
 	 */
 	public Responser(int srcPort, int dstPort) {
 
@@ -52,8 +46,6 @@ public class Responser extends Thread {
 					continue;
 				
 				replytoClient((Inet4Address) packet.getAddress());
-				
-				
 
 			} catch (IOException e) {
 				
@@ -63,7 +55,6 @@ public class Responser extends Thread {
 	}
 
 	public void replytoClient(Inet4Address clientAddress) {
-
 		
 		MyOut.println("客户端ip:" + clientAddress.getHostAddress());
 
@@ -76,12 +67,9 @@ public class Responser extends Thread {
 			socket.send(packet);
 			socket.close();
 		} catch (IOException e) {
-			
 			MyOut.println(e.toString());
 		}
-
 	}
-	
 
 	public static String byteToString(byte[] bs) {
 		String result = new String(bs);
